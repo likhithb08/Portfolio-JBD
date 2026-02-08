@@ -21,7 +21,7 @@ export const SKILLS: SkillGroup[] = [
   },
   {
     category: "Web & Database",
-    items: ["MySQL", "MongoDB", "Node.js", "Express.js", "React"]
+    items: ["MySQL", "MongoDB"]
   }
 ];
 
