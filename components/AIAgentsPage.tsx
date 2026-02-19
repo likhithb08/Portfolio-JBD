@@ -74,12 +74,10 @@ const AIAgentsPage: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <TechItem name="n8n" description="Complex workflow orchestration and API integrations." />
             <TechItem name="OpenAI / Gemini" description="LLM integration for intelligent decision making and content generation." />
-            <TechItem name="LangChain" description="Building stateful agents and chains for advanced logic." />
+            
             <TechItem name="Supabase / SQL" description="Persistent memory and structured data storage for agents." />
-            <TechItem name="Pinecone" description="Vector database for semantic search and retrieval augmented generation (RAG)." />
-            <TechItem name="Puppeteer" description="Headless browser automation for web scraping and testing." />
-            <TechItem name="Docker" description="Containerized deployment for reproducible environments." />
-            <TechItem name="Python / JS" description="Custom scripts to extend low-code capabilities." />
+            
+            
           </div>
         </section>
 
