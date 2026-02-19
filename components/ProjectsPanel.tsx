@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Project } from '../types';
-import { PROJECTS } from '../App';
+import { PROJECTS } from '../data';
 
 interface Props {
   isOpen: boolean;
@@ -101,26 +101,36 @@ const ProjectsPanel: React.FC<Props> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Content Scroller */}
-          <div ref={scrollRef} className="h-full pt-28 pb-10 overflow-y-auto px-6 md:px-10 custom-scrollbar">
+          <div ref={scrollRef} className="h-full pt-36 pb-20 overflow-y-auto px-6 md:px-16 custom-scrollbar">
             
             {/* View State: PROJECT_LIST */}
-            <div className={`transition-all duration-300 ${view === 'LIST' ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none absolute'}`}>
-              <div className="grid gap-6 md:grid-cols-2">
+            <div className={`transition-all duration-500 ${view === 'LIST' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none absolute'}`}>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {PROJECTS.map((project, idx) => (
                   <div 
                     key={idx} 
                     onClick={() => handleSelectProject(project)}
-                    className="group relative bg-[#0d0d0d] border border-slate-800 p-8 rounded-xl cursor-pointer hover:border-sky-500/40 transition-all duration-300 transform hover:-translate-y-1"
+                    className="group relative bg-[#0a0a0a] border border-slate-800/60 p-8 rounded-2xl cursor-pointer hover:border-sky-500/30 hover:bg-slate-900/20 transition-all duration-500 transform hover:-translate-y-2 flex flex-col h-full"
                   >
-                    <div className="absolute top-8 right-8 text-sky-600 font-mono text-sm opacity-50 group-hover:opacity-100 transition-opacity">0{idx + 1}.</div>
-                    <h3 className="text-2xl font-bold text-slate-100 mb-2 group-hover:text-sky-400 transition-colors">{project.title}</h3>
-                    <p className="text-slate-400 text-sm mb-6 leading-relaxed line-clamp-2 italic">"{project.problem}"</p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.tech.map(t => (
-                        <span key={t} className="px-2 py-0.5 bg-slate-900 border border-slate-800 text-slate-500 text-[10px] uppercase font-mono tracking-tighter">
+                    <div className="flex justify-between items-start mb-6">
+                      <span className="text-4xl text-slate-800 font-bold font-mono group-hover:text-sky-900/50 transition-colors">0{idx + 1}</span>
+                      <div className="w-8 h-8 rounded-full border border-slate-800 flex items-center justify-center group-hover:border-sky-500/30 group-hover:bg-sky-500/10 transition-colors">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-600 group-hover:text-sky-400 transition-colors"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-slate-200 mb-3 group-hover:text-sky-400 transition-colors tracking-tight">{project.title}</h3>
+                    <p className="text-slate-500 text-sm mb-8 leading-relaxed line-clamp-3 group-hover:text-slate-400 transition-colors flex-grow">{project.problem}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-slate-900 group-hover:border-slate-800/50 transition-colors">
+                      {project.tech.slice(0, 3).map(t => (
+                        <span key={t} className="px-2 py-1 bg-slate-900/50 border border-slate-800 text-slate-500 text-[10px] uppercase font-mono tracking-wider rounded-md">
                           {t}
                         </span>
                       ))}
+                      {project.tech.length > 3 && (
+                         <span className="px-2 py-1 text-slate-600 text-[10px] uppercase font-mono tracking-wider">+ {project.tech.length - 3}</span>
+                      )}
                     </div>
                   </div>
                 ))}
